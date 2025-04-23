@@ -9,7 +9,7 @@ Route::get('/tarjetas', [TarjetaController::class, 'index']);
 // POST - Crear una nueva tarjeta
 Route::post('/tarjetas', [TarjetaController::class, 'store']);
 
-// GET - Ver una sola tarjeta por ID
+// SHOW - Ver una sola tarjeta por ID
 Route::get('/tarjetas/{id}', [TarjetaController::class, 'show']);
 
 // PUT - Actualizar completamente una tarjeta
