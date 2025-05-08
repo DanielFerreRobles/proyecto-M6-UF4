@@ -33,11 +33,7 @@ return [
 
     'providers' => [
 
-        /*
-        |--------------------------------------------------------------------------
-        | Laravel Framework Service Providers...
-        |--------------------------------------------------------------------------
-        */
+        // Laravel Framework Service Providers...
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -56,6 +52,12 @@ return [
         Illuminate\Queue\QueueServiceProvider::class,
         Illuminate\Redis\RedisServiceProvider::class,
         Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
+
+        // 🔧 AÑADE ESTE
+        Illuminate\Translation\TranslationServiceProvider::class,
     ]
+
+
     ];
 
