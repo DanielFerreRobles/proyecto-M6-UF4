@@ -9,12 +9,20 @@ use Symfony\Component\HttpFoundation\Response;
 class IsUserAuth
 {
     /**
-     * Handle an incoming request.
+     * Maneja una solicitud entrante.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request);
+        if (auth('api')->user()) {
+            return $next($request);
+        }
+
+        return response()->json([
+            'message' => 'Unauthorized'
+        ], 401);
     }
 }
