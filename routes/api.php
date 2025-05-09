@@ -24,10 +24,10 @@ Route::delete('/tarjetas/{id}', [TarjetaController::class, 'destroy']);
 
 //RUTAS PUBLICAS
 // POST - Registrar un nuevo usuario
-Route::post('register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
 // POST - Iniciar sesión
-Route::post('login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 // Rutas protegidas (comentadas por ahora)
 // Route::middleware(['isAdmin::class'])->group(function () {
