@@ -1,8 +1,11 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\TarjetaController;
+use App\Http\Controllers\Api\TarjetsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\IsUserAuth;
+use App\Http\Middleware\Isadmin;
 
 // GET - Ver todas las tarjetas
 Route::get('/tarjetas', [TarjetaController::class, 'index']);  // Esta es la correcta
