@@ -17,6 +17,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'role' => 'required|string|min:5|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -24,9 +25,10 @@ class AuthController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'password' => bcrypt($request->get('password')),
+            'role' => $request->get('role'), // Default role is 'user'
         ]);
 
         return response()->json(['message' => 'User registered successfully', 'data' => $user], 201);
@@ -43,20 +45,20 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('email','password');
 
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return response()->json(['message' => 'invalid credentials'], 401);
             }
 
             return response()->json([
                 'token' => $token,
                 'message' => 'User logged in successfully',
-            ]);
+            ],200);
         } catch (JWTException $e) {
             return response()->json([
-                'error' => 'could_not_create_token',
+                'error' => 'could not create token',
                 'message' => $e->getMessage()
             ], 500);
         }

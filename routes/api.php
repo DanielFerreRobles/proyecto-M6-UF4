@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\TarjetsController;
+use App\Http\Controllers\Api\TarjetaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\IsUserAuth;
-use App\Http\Middleware\Isadmin;
+use App\Http\Middleware\IsAdmin;
 
 // GET - Ver todas las tarjetas
 Route::get('tarjetas', [TarjetaController::class, 'index']);  // Esta es la correcta
@@ -32,9 +32,9 @@ Route::post('register', [AuthController::class, 'register']);
 // POST - Iniciar sesión
 Route::post('login', [AuthController::class, 'login']);
 
-// Rutas protegidas (comentadas por ahora)
-// Route::middleware(['isAdmin::class'])->group(function () {
-//     Route::post('logout', [AuthController::class, 'logout']);
-//     Route::get('me', [AuthController::class, 'getUser']);
-//     Route::post('tarjetas', [AuthController::class, 'addTarjeta']);
-// });
+// RUTAS PROTEGIDAS
+ Route::middleware(['isAdmin::class'])->group(function () {
+     Route::post('logout', [AuthController::class, 'logout']);
+     Route::get('me', [AuthController::class, 'getUser']);
+     Route::post('tarjetas', [TarjetaController::class, 'addTarjeta']);
+ });
