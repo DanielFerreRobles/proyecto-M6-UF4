@@ -28,7 +28,6 @@ Route::delete('tarjetas/{id}', [TarjetaController::class, 'destroy']);
 //RUTAS PUBLICAS
 // POST - Registrar un nuevo usuario
 Route::post('register', [AuthController::class, 'register']);
-
 // POST - Iniciar sesión
 Route::post('login', [AuthController::class, 'login']);
 
@@ -36,5 +35,5 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware([isUserAuth::class])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::get('me', [AuthController::class, 'getUser']);
-    Route::post('tarjetas', [TarjetaController::class, 'addTarjeta']);
+
 });

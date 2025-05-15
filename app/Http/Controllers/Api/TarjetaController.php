@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tarjeta;
 
+
 class TarjetaController extends Controller
 {
     // GET - Ver todas las tarjetas
