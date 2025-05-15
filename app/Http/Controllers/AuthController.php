@@ -14,10 +14,10 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|string|min:5|confirmed',
+            'name' => 'required|string|max:100',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|min:5|confirmed',
+            'role' => 'required|string|in:user,admin'
         ]);
 
         if ($validator->fails()) {
@@ -45,7 +45,7 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $credentials = $request->only('email','password');
+        $credentials = $request->only(['email','password']);
 
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
